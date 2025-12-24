@@ -572,11 +572,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapController
   terrainChunks:
   - {fileID: 1427854577}
-  player: {fileID: 1433481061}
-  checkerRadius: 0.4
+  checkerRadius: 1
   terrainLayer:
     serializedVersion: 2
     m_Bits: 64
+  currentChunk: {fileID: 1427854577}
 --- !u!4 &543372115
 Transform:
   m_ObjectHideFlags: 0
@@ -660,7 +660,7 @@ GameObject:
   - component: {fileID: 1433481068}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
