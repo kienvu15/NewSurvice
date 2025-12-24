@@ -1,38 +1,56 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections.Generic;
 
 public class MapController : MonoBehaviour
 {
+    [Header("Settings")]
     [SerializeField] List<GameObject> terrainChunks;
-    [SerializeField] GameObject player;
-    public float checkerRadius;
-    Vector3 noTerrainPosition;
-    public LayerMask terrainLayer;
-    PlayerMovement playerMovement;
+    [SerializeField] float checkerRadius = 1f;
+    [SerializeField] LayerMask terrainLayer;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Current State")]
+    public GameObject currentChunk;
+
+    // Danh sách tên các điểm neo (Anchor points) trong Prefab
+    readonly string[] directionNames = {
+        "Right", "Left", "Up", "Down",
+        "Right Up", "Right Down", "Left Up", "Left Down"
+    };
+
+    // Hàm này sẽ được gọi từ TrunkTrigger khi Player bước vào chunk mới
+    public void OnPlayerEnterNewChunk(GameObject newChunk)
     {
-        playerMovement = player.GetComponent<PlayerMovement>();
+        currentChunk = newChunk;
+        CheckAndSpawnAdjacentChunks();
     }
 
-    // Update is called once per frame
-    void Update()
+    void CheckAndSpawnAdjacentChunks()
     {
-        
-    }
+        if (currentChunk == null) return;
 
-    void ChunkChecker()
-    {
-        if(playerMovement.moveDir.x > 0 && playerMovement.moveDir.y == 0)
+        foreach (string dirName in directionNames)
         {
-            Collider[] colliders = Physics.OverlapSphere(player.transform.position + new Vector3(20, 0, 0), checkerRadius, terrainLayer);
-            if (colliders.Length == 0)
+            Transform anchor = currentChunk.transform.Find(dirName);
+
+            if (anchor != null)
             {
-                noTerrainPosition = player.transform.position + new Vector3(20, 0, 0);
+                // Kiểm tra xem tại vị trí anchor này đã có mảnh đất nào chưa
+                // Sử dụng OverlapSphere để check Layer "Terrain"
+                if (!Physics.CheckSphere(anchor.position, checkerRadius, terrainLayer))
+                {
+                    SpawnChunk(anchor.position);
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"Thiếu điểm neo '{dirName}' trong Prefab: {currentChunk.name}");
             }
         }
     }
 
-
+    void SpawnChunk(Vector3 spawnPosition)
+    {
+        int rand = Random.Range(0, terrainChunks.Count);
+        Instantiate(terrainChunks[rand], spawnPosition, Quaternion.identity);
+    }
 }
