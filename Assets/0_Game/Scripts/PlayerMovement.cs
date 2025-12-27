@@ -4,7 +4,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] float moveSpeed = 5f;
-    public Vector3 moveDir;
+    [HideInInspector] public Vector3 moveDir;
+    public Vector3 lastMovedVector;
 
     [Header("Visual")]
     [SerializeField] Transform visual; 
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         cam = Camera.main.transform;
+        lastMovedVector = Vector3.forward;
     }
 
     void OnEnable()
@@ -83,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
         camRight.Normalize();
 
         moveDir = camRight * moveInput.x + camForward * moveInput.y;
-
+        lastMovedVector = moveDir;
         rb.linearVelocity = moveDir * moveSpeed;
     }
 
