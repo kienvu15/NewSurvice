@@ -181,4 +181,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec3a068c0fc3974fa1e18e14f6e42ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GasBehaviour
+  weaponData: {fileID: 11400000, guid: 391b9f40881844142b9715ffddeac5f2, type: 2}
   destroyAfterSeconds: 2
