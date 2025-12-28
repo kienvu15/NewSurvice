@@ -71,13 +71,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8158504858350323559}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.38792583, z: 0, w: 0.9216906}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7996398300569612054}
-  m_LocalEulerAnglesHint: {x: 0, y: 45.651, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2760222277759169154
 SpriteRenderer:
   serializedVersion: 2
@@ -160,8 +160,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9163080531507843746}
   - component: {fileID: 8637427989096083163}
-  - component: {fileID: 4828284880066280807}
   - component: {fileID: 860273932738215160}
+  - component: {fileID: 3048784433841563768}
   m_Layer: 0
   m_Name: Knife Weapon
   m_TagString: Untagged
@@ -200,29 +200,6 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: 94977257a54f5dd4c90ec6863761c689, type: 2}
   destroyAfterSeconds: 3
   spriteFace: {fileID: 2768246401925917287}
---- !u!136 &4828284880066280807
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8909035163227558432}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.3466459
-  m_Height: 3.5798855
-  m_Direction: 1
-  m_Center: {x: 0, y: -1.2899427, z: 0.15335411}
 --- !u!54 &860273932738215160
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -250,3 +227,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &3048784433841563768
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8909035163227558432}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5549004, y: 0.24759552, z: 0.5879558}
+  m_Center: {x: 0, y: 0.2, z: 0}
