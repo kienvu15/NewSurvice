@@ -3,7 +3,6 @@
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] float moveSpeed = 5f;
     [HideInInspector] public Vector3 moveDir;
     public Vector3 lastMovedVector;
 
@@ -13,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     // Animator
     static readonly int RunHash = Animator.StringToHash("Run");
 
+    [SerializeField] CharacterScriptsableObject characterData;
     Rigidbody rb;
     Animator anim;
     InputSystem_Actions inputActions;
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
         moveDir = camRight * moveInput.x + camForward * moveInput.y;
         lastMovedVector = moveDir;
-        rb.linearVelocity = moveDir * moveSpeed;
+        rb.linearVelocity = moveDir * characterData.MoveSpeed;
     }
 
 

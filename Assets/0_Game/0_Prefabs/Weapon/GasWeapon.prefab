@@ -25,13 +25,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314022679201582774}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.5939133, y: 0.2650466, z: -0.21616672, w: 0.7282097}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8014109249977733267}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 78.4, y: 40, z: 0}
 --- !u!212 &3899290442044951604
 SpriteRenderer:
   serializedVersion: 2
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1070102787
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 21
   m_MaskInteraction: 0
   m_Sprite: {fileID: -161142232, guid: da14aa855af2280469d28708bf1f30f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -116,14 +116,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6030641943921481948}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.42957962, y: 0.34321496, z: -0.18080366, w: 0.81545997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3235112584207464095}
   m_Father: {fileID: 5294731711481449639}
-  m_LocalEulerAnglesHint: {x: 55.56, y: 45.651, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2798096537206734279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5294731711481449639}
   - component: {fileID: 9007458388803065852}
+  - component: {fileID: 8540684546570996698}
   m_Layer: 0
   m_Name: GasWeapon
   m_TagString: Untagged
@@ -183,3 +184,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GasBehaviour
   weaponData: {fileID: 11400000, guid: 391b9f40881844142b9715ffddeac5f2, type: 2}
   destroyAfterSeconds: 2
+--- !u!136 &8540684546570996698
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8106219820115961274}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8
+  m_Height: 1
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}

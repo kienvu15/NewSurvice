@@ -580,7 +580,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510615533}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e8bd88c11777f1419bd28b5877e739d, type: 3}
   m_Name: 
@@ -731,7 +731,7 @@ Transform:
   m_GameObject: {fileID: 1236273910}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -894,7 +894,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -915,67 +915,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   enemyData: {fileID: 11400000, guid: d81a910982a6d7740824598286e86ea0, type: 2}
---- !u!1001 &1403823577
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8909035163227558432, guid: ace3bf299f53d494fba0d6ee8f4cec3f, type: 3}
-      propertyPath: m_Name
-      value: Knife Weapon
-      objectReference: {fileID: 0}
-    - target: {fileID: 8909035163227558432, guid: ace3bf299f53d494fba0d6ee8f4cec3f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9163080531507843746, guid: ace3bf299f53d494fba0d6ee8f4cec3f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9163080531507843746, guid: ace3bf299f53d494fba0d6ee8f4cec3f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9163080531507843746, guid: ace3bf299f53d494fba0d6ee8f4cec3f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9163080531507843746, guid: ace3bf299f53d494fba0d6ee8f4cec3f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9163080531507843746, guid: ace3bf299f53d494fba0d6ee8f4cec3f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9163080531507843746, guid: ace3bf299f53d494fba0d6ee8f4cec3f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9163080531507843746, guid: ace3bf299f53d494fba0d6ee8f4cec3f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9163080531507843746, guid: ace3bf299f53d494fba0d6ee8f4cec3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9163080531507843746, guid: ace3bf299f53d494fba0d6ee8f4cec3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9163080531507843746, guid: ace3bf299f53d494fba0d6ee8f4cec3f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ace3bf299f53d494fba0d6ee8f4cec3f, type: 3}
 --- !u!1 &1427854577 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4607433177838408240, guid: 81fa3c669baf80642a2c2835556e635c, type: 3}
@@ -998,6 +937,7 @@ GameObject:
   - component: {fileID: 1433481067}
   - component: {fileID: 1433481066}
   - component: {fileID: 1433481068}
+  - component: {fileID: 1433481069}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1085,10 +1025,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172e7be8b6f34a54f8f195d3e4e547b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 5
   moveDir: {x: 0, y: 0, z: 0}
   lastMovedVector: {x: 0, y: 0, z: 0}
   visual: {fileID: 2094042879}
+  characterData: {fileID: 11400000, guid: 4ffed722a97363b4dbf9194305a243b8, type: 2}
+--- !u!114 &1433481069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433481061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e6d865c16276242a93c66f88a25be9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  characterData: {fileID: 11400000, guid: 4ffed722a97363b4dbf9194305a243b8, type: 2}
+  experience: 0
+  level: 1
+  experienceCap: 0
+  invincibilityDuration: 0.5
+  levelRanges:
+  - startLevel: 1
+    endLevel: 3
+    experienceCapIncrease: 100
+  - startLevel: 4
+    endLevel: 5
+    experienceCapIncrease: 200
 --- !u!1 &1863955285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,6 +1065,7 @@ GameObject:
   - component: {fileID: 1863955287}
   - component: {fileID: 1863955288}
   - component: {fileID: 1863955289}
+  - component: {fileID: 1863955290}
   m_Layer: 0
   m_Name: Enemy01
   m_TagString: Enemy
@@ -1186,6 +1151,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1863955290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863955285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdaf7a9b8856c0944aee2ef1d09b9061, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DropRateManager
+  drops:
+  - name: Blue
+    itemPrefab: {fileID: 7723847310981841706, guid: af6aa13a70f43db4a819392b751d4aac, type: 3}
+    dropRate: 100
 --- !u!1 &2094042878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1381,4 +1362,3 @@ SceneRoots:
   - {fileID: 1433481065}
   - {fileID: 543372115}
   - {fileID: 1863955286}
-  - {fileID: 1403823577}
