@@ -13,7 +13,7 @@ public class DropRateManager : MonoBehaviour
 
     public List<Drops> drops;
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         float randomNumer = UnityEngine.Random.Range(0f, 100f);
         List<Drops> posibleDrops = new List<Drops>();

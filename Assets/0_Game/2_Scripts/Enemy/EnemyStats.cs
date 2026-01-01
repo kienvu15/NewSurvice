@@ -5,9 +5,9 @@ public class EnemyStats : MonoBehaviour
 {
     public EnemyScriptableObject enemyData;
 
-    float currentMoveSpeed;
-    float currentHealth;
-    float currentDamage;
+    [SerializeField] public float currentMoveSpeed;
+    [SerializeField] public float currentHealth;
+    [SerializeField] public float currentDamage;
 
     private void Awake()
     {

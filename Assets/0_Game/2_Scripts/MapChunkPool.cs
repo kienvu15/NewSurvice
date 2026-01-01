@@ -42,7 +42,6 @@ public class MapChunkPool : MonoBehaviour
     public void ReturnToPool(GameObject obj)
     {
         obj.SetActive(false);
-        // Tên object sau khi Instantiate thường có chữ "(Clone)", cần xử lý để khớp key
         string key = obj.name.Replace("(Clone)", "").Trim();
         if (poolDictionary.ContainsKey(key))
         {

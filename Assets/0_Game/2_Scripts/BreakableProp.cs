@@ -15,6 +15,6 @@ public class BreakableProp : MonoBehaviour
 
     public void Kill()
     {
-        Destroy(gameObject);
+        MapChunkPool.Instance.ReturnToPool(this.gameObject);
     }
 }

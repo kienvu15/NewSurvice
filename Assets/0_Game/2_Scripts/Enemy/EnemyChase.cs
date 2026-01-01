@@ -3,18 +3,20 @@ using UnityEngine.AI;
 
 public class EnemyChase : MonoBehaviour
 {
-    [Header("Config")]
-    [SerializeField] EnemyScriptableObject enemyData;
-
+    EnemyStats enemyStats;
     NavMeshAgent agent;
     Transform player;
 
     void Awake()
     {
+        enemyStats = GetComponent<EnemyStats>();
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player").transform;
+    }
 
-        agent.speed = enemyData.MoveSpeed;
+    private void Start()
+    {
+        agent.speed = enemyStats.currentMoveSpeed;
     }
 
     void Update()

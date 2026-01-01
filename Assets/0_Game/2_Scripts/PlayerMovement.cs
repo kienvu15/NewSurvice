@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     // Animator
     static readonly int RunHash = Animator.StringToHash("Run");
 
-    [SerializeField] CharacterScriptsableObject characterData;
+    PlayerStats playStats;
     Rigidbody rb;
     Animator anim;
     InputSystem_Actions inputActions;
@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        playStats = GetComponent<PlayerStats>();
         cam = Camera.main.transform;
         lastMovedVector = Vector3.forward;
     }
@@ -86,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
         moveDir = camRight * moveInput.x + camForward * moveInput.y;
         lastMovedVector = moveDir;
-        rb.linearVelocity = moveDir * characterData.MoveSpeed;
+        rb.linearVelocity = moveDir * playStats.currentSpeed;
     }
 
 
