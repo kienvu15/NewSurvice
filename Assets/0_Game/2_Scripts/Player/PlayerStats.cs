@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class PlayerStats : MonoBehaviour
 {
-    public CharacterScriptsableObject characterData;
+    CharacterScriptsableObject characterData;
 
     [HideInInspector]
     public float currentHealth;
@@ -15,6 +15,10 @@ public class PlayerStats : MonoBehaviour
     public float currentSpeed;
     [HideInInspector]
     public float currentProjectileSpeed;
+    [HideInInspector]
+    public float currentMagnet;
+
+    public List<GameObject> spawnedWeapons;
 
     [Header("Level")]
     public int experience = 0;
@@ -39,10 +43,16 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
+        characterData = CharacterSelector.GetData();
+        CharacterSelector.instance.DestroySingletion();
+
         currentHealth = characterData.MaxHealth;
         currentRecovery = characterData.Recovery;
         currentMoveSpeed = characterData.MoveSpeed;
         currentProjectileSpeed = characterData.ProjectileSpeed;
+        currentMagnet = characterData.Magnet;
+
+        SpawnWeapon(characterData.StartingWeapon);
     }
 
     void Start()
@@ -60,6 +70,7 @@ public class PlayerStats : MonoBehaviour
         {
             isInvicible = false;
         }
+        Recovery();
     }
 
     public void IncreaseExperience(int amount)
@@ -117,5 +128,24 @@ public class PlayerStats : MonoBehaviour
                 currentHealth = characterData.MaxHealth;
             }
         }
+    }
+
+    void Recovery()
+    {
+        if(currentHealth < characterData.MaxHealth)
+        {
+            currentHealth += currentHealth * Time.deltaTime;
+            if(currentHealth > characterData.MaxHealth)
+            {
+                currentHealth = characterData.MaxHealth;
+            }
+        }
+    }
+
+    public void SpawnWeapon(GameObject weapon)
+    {
+        GameObject spawnedWeapon = Instantiate(weapon, transform.position, Quaternion.identity);
+        spawnedWeapon.transform.SetParent(transform);
+        spawnedWeapons.Add(spawnedWeapon);
     }
 }

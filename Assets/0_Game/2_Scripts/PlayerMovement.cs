@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
         moveDir = camRight * moveInput.x + camForward * moveInput.y;
         lastMovedVector = moveDir;
-        rb.linearVelocity = moveDir * playStats.currentSpeed;
+        rb.linearVelocity = moveDir * playStats.currentMoveSpeed;
     }
 
 

@@ -9,7 +9,7 @@ public class EnemyChase : MonoBehaviour
 
     void Awake()
     {
-        enemyStats = GetComponent<EnemyStats>();
+        enemyStats = GetComponentInChildren<EnemyStats>();
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindWithTag("Player").transform;
     }
