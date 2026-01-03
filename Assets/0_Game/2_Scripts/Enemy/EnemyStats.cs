@@ -38,4 +38,10 @@ public class EnemyStats : MonoBehaviour
             playerStats.TakeDamage(currentDamage);
         }
     }
+
+    private void OnDestroy()
+    {
+        EnemySpawner es = FindFirstObjectByType<EnemySpawner>();
+        es.OnEnemyKilled();
+    }
 }
