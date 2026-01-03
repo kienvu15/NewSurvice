@@ -3,26 +3,42 @@ using System.Collections.Generic;
 
 public class PropRandomizer : MonoBehaviour
 {
-    public List<GameObject> propSpawnPoints;
+    [Header("Spawn Points")]
+    public List<Transform> propSpawnPoints;
+
+    [Header("Prop Prefabs")]
     public List<GameObject> propPrefabs;
 
-    void Start()
-    {
-        SpawnProps();
-    }
+    List<GameObject> activeProps = new();
 
-    void Update()
+    public void SpawnProps()
     {
-        
-    }
+        ClearProps();
 
-    void SpawnProps()
-    {
-        foreach(GameObject sp in propSpawnPoints)
+        foreach (Transform sp in propSpawnPoints)
         {
+            if (propPrefabs.Count == 0) return;
+
             int rand = Random.Range(0, propPrefabs.Count);
-            GameObject prop = Instantiate(propPrefabs[rand], sp.transform.position, Quaternion.identity);
-            prop.transform.SetParent(sp.transform);
+
+            GameObject prop = PropPool.Instance.Get(
+                propPrefabs[rand],
+                sp.position,
+                sp
+            );
+
+            activeProps.Add(prop);
         }
+    }
+
+    public void ClearProps()
+    {
+        foreach (var prop in activeProps)
+        {
+            if (prop != null)
+                PropPool.Instance.Return(prop);
+        }
+
+        activeProps.Clear();
     }
 }

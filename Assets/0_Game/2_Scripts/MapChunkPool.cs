@@ -36,12 +36,15 @@ public class MapChunkPool : MonoBehaviour
 
         obj.transform.position = position;
         obj.SetActive(true);
+        obj.GetComponent<MapChunk>()?.OnSpawn();
         return obj;
     }
 
     public void ReturnToPool(GameObject obj)
     {
+        obj.GetComponent<MapChunk>()?.OnDespawn();
         obj.SetActive(false);
+
         string key = obj.name.Replace("(Clone)", "").Trim();
         if (poolDictionary.ContainsKey(key))
         {
