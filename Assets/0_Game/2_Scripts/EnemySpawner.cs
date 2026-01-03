@@ -7,12 +7,19 @@ public class EnemySpawner : MonoBehaviour
     public class Wave
     {
         public string waveName;
-        public List<GameObject> enemyPrefabs;
-        public List<string> enemyName;
-        public List<int> enemyCount;
+        public List<EnemyGroup> enemyGroups;
         public int waveQuota;
         public float spawnInterval;
         public int spawnCount;
+    }
+
+    [System.Serializable]
+    public class EnemyGroup
+    {
+        public string enemyName;
+        public int enemyCount;
+        public int spawnCount;
+        public GameObject enemyPrefab;
     }
 
     public List<Wave> waves;
