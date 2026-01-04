@@ -3,13 +3,10 @@ using System.Collections.Generic;
 
 public class PropRandomizer : MonoBehaviour
 {
-    [Header("Spawn Points")]
     public List<Transform> propSpawnPoints;
-
-    [Header("Prop Prefabs")]
     public List<GameObject> propPrefabs;
 
-    List<GameObject> activeProps = new();
+    List<(GameObject prefab, GameObject instance)> spawnedProps = new();
 
     public void SpawnProps()
     {
@@ -17,28 +14,36 @@ public class PropRandomizer : MonoBehaviour
 
         foreach (Transform sp in propSpawnPoints)
         {
-            if (propPrefabs.Count == 0) return;
-
             int rand = Random.Range(0, propPrefabs.Count);
+            GameObject prefab = propPrefabs[rand];
 
             GameObject prop = PropPool.Instance.Get(
-                propPrefabs[rand],
-                sp.position,
-                sp
-            );
+                        prefab,
+                        sp,
+                        sp.position
+                    );
 
-            activeProps.Add(prop);
+            var breakable = prop.GetComponent<BreakableProp>();
+            if (breakable != null)
+            {
+                breakable.prefabSource = prefab;
+            }
+
+            spawnedProps.Add((prefab, prop));
+
         }
     }
 
     public void ClearProps()
     {
-        foreach (var prop in activeProps)
+        foreach (var data in spawnedProps)
         {
-            if (prop != null)
-                PropPool.Instance.Return(prop);
+            if (data.instance != null)
+            {
+                PropPool.Instance.Return(data.prefab, data.instance);
+            }
         }
 
-        activeProps.Clear();
+        spawnedProps.Clear();
     }
 }

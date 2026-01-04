@@ -1,57 +1,41 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class PropPool : MonoBehaviour
 {
     public static PropPool Instance;
 
-    [System.Serializable]
-    public class PoolItem
-    {
-        public GameObject prefab;
-        public int initialSize = 5;
-    }
+    [SerializeField] List<GameObject> propPrefabs;
+    [SerializeField] int initialSizePerPrefab = 5;
 
-    [SerializeField] List<PoolItem> poolItems;
-
-    Dictionary<string, Queue<GameObject>> poolDict = new();
+    Dictionary<GameObject, Queue<GameObject>> pool = new();
 
     void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         Instance = this;
 
-        foreach (var item in poolItems)
+        foreach (var prefab in propPrefabs)
         {
-            Queue<GameObject> queue = new();
+            Queue<GameObject> q = new();
 
-            for (int i = 0; i < item.initialSize; i++)
+            for (int i = 0; i < initialSizePerPrefab; i++)
             {
-                GameObject obj = Instantiate(item.prefab, transform);
+                GameObject obj = Instantiate(prefab, transform);
                 obj.SetActive(false);
-                queue.Enqueue(obj);
+                q.Enqueue(obj);
             }
 
-            poolDict.Add(item.prefab.name, queue);
+            pool.Add(prefab, q);
         }
     }
 
-    public GameObject Get(GameObject prefab, Vector3 pos, Transform parent)
+    public GameObject Get(GameObject prefab, Transform parent, Vector3 pos)
     {
-        string key = prefab.name;
+        if (!pool.ContainsKey(prefab))
+            return null;
 
-        if (!poolDict.ContainsKey(key))
-        {
-            poolDict[key] = new Queue<GameObject>();
-        }
-
-        GameObject obj = poolDict[key].Count > 0
-            ? poolDict[key].Dequeue()
+        GameObject obj = pool[prefab].Count > 0
+            ? pool[prefab].Dequeue()
             : Instantiate(prefab, transform);
 
         obj.transform.SetParent(parent);
@@ -62,16 +46,10 @@ public class PropPool : MonoBehaviour
         return obj;
     }
 
-    public void Return(GameObject obj)
+    public void Return(GameObject prefab, GameObject obj)
     {
         obj.SetActive(false);
         obj.transform.SetParent(transform);
-
-        string key = obj.name.Replace("(Clone)", "").Trim();
-
-        if (!poolDict.ContainsKey(key))
-            poolDict[key] = new Queue<GameObject>();
-
-        poolDict[key].Enqueue(obj);
+        pool[prefab].Enqueue(obj);
     }
 }

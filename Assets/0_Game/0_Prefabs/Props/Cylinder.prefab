@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BreakableProp
   health: 10
+  dropRateManager: {fileID: 1442263652884300783}
 --- !u!114 &1442263652884300783
 MonoBehaviour:
   m_ObjectHideFlags: 0

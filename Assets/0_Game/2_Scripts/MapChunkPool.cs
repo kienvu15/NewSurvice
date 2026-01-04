@@ -4,23 +4,28 @@ using UnityEngine;
 public class MapChunkPool : MonoBehaviour
 {
     public static MapChunkPool Instance;
-    [SerializeField] List<GameObject> prefabs;
-    [SerializeField] int initialPoolSize = 10;
 
-    Dictionary<string, Queue<GameObject>> poolDictionary = new Dictionary<string, Queue<GameObject>>();
+    [SerializeField] private List<GameObject> prefabs;
+    [SerializeField] private int initialPoolSize = 10;
 
-    void Awake()
+    private Dictionary<string, Queue<GameObject>> poolDictionary =
+        new Dictionary<string, Queue<GameObject>>();
+
+    private void Awake()
     {
         Instance = this;
-        foreach (var prefab in prefabs)
+
+        foreach (GameObject prefab in prefabs)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
+
             for (int i = 0; i < initialPoolSize; i++)
             {
                 GameObject obj = Instantiate(prefab, transform);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
+
             poolDictionary.Add(prefab.name, objectPool);
         }
     }
@@ -28,7 +33,9 @@ public class MapChunkPool : MonoBehaviour
     public GameObject GetFromPool(GameObject prefab, Vector3 position)
     {
         string key = prefab.name;
-        if (!poolDictionary.ContainsKey(key)) return null;
+
+        if (!poolDictionary.ContainsKey(key))
+            return null;
 
         GameObject obj = poolDictionary[key].Count > 0
             ? poolDictionary[key].Dequeue()
@@ -37,6 +44,7 @@ public class MapChunkPool : MonoBehaviour
         obj.transform.position = position;
         obj.SetActive(true);
         obj.GetComponent<MapChunk>()?.OnSpawn();
+
         return obj;
     }
 
@@ -46,6 +54,7 @@ public class MapChunkPool : MonoBehaviour
         obj.SetActive(false);
 
         string key = obj.name.Replace("(Clone)", "").Trim();
+
         if (poolDictionary.ContainsKey(key))
         {
             poolDictionary[key].Enqueue(obj);

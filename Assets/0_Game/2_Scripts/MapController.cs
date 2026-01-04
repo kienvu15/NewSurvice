@@ -4,23 +4,31 @@ using System.Collections.Generic;
 public class MapController : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] List<GameObject> terrainChunks;
-    [SerializeField] float checkerRadius = 6f;
-    [SerializeField] LayerMask terrainLayer;
-    [SerializeField] float maxDistance = 100f; // Khoảng cách để thu hồi chunk
+    [SerializeField] private List<GameObject> terrainChunks;
+    [SerializeField] private float checkerRadius = 6f;
+    [SerializeField] private LayerMask terrainLayer;
+    [SerializeField] private float maxDistance = 100f; // Khoảng cách để thu hồi chunk
 
     [Header("Player Reference")]
-    [SerializeField] Transform player;
+    [SerializeField] private Transform player;
 
     public GameObject currentChunk;
-    List<GameObject> activeChunks = new List<GameObject>();
 
-    readonly string[] directionNames = {
-        "Right", "Left", "Up", "Down",
-        "Right Up", "Right Down", "Left Up", "Left Down"
+    private List<GameObject> activeChunks = new List<GameObject>();
+
+    private readonly string[] directionNames =
+    {
+        "Right",
+        "Left",
+        "Up",
+        "Down",
+        "Right Up",
+        "Right Down",
+        "Left Up",
+        "Left Down"
     };
 
-    void Update()
+    private void Update()
     {
         CheckAndReturnChunks();
     }
@@ -31,41 +39,57 @@ public class MapController : MonoBehaviour
         CheckAndSpawnAdjacentChunks();
     }
 
-    void CheckAndSpawnAdjacentChunks()
+    private void CheckAndSpawnAdjacentChunks()
     {
         if (currentChunk == null) return;
 
         foreach (string dirName in directionNames)
         {
             Transform anchor = currentChunk.transform.Find(dirName);
-            if (anchor != null)
+            if (anchor == null) continue;
+
+            bool hasChunk = Physics.CheckSphere(
+                anchor.position,
+                checkerRadius,
+                terrainLayer
+            );
+
+            if (!hasChunk)
             {
-                if (!Physics.CheckSphere(anchor.position, checkerRadius, terrainLayer))
-                {
-                    SpawnChunk(anchor.position);
-                }
+                SpawnChunk(anchor.position);
             }
         }
     }
 
-    void SpawnChunk(Vector3 spawnPosition)
+    private void SpawnChunk(Vector3 spawnPosition)
     {
         int rand = Random.Range(0, terrainChunks.Count);
+
         // Sử dụng Pool thay vì Instantiate
-        GameObject newChunk = MapChunkPool.Instance.GetFromPool(terrainChunks[rand], spawnPosition);
-        if (newChunk != null) activeChunks.Add(newChunk);
+        GameObject newChunk = MapChunkPool.Instance.GetFromPool(
+            terrainChunks[rand],
+            spawnPosition
+        );
+
+        if (newChunk != null)
+        {
+            activeChunks.Add(newChunk);
+        }
     }
 
-    void CheckAndReturnChunks()
+    private void CheckAndReturnChunks()
     {
         if (player == null) return;
 
         for (int i = activeChunks.Count - 1; i >= 0; i--)
         {
             GameObject chunk = activeChunks[i];
-            float distance = Vector3.Distance(player.position, chunk.transform.position);
+            float distance = Vector3.Distance(
+                player.position,
+                chunk.transform.position
+            );
 
-            // Nếu đi quá xa và không phải chunk hiện tại đang đứng
+            // Nếu đi quá xa và không phải chunk hiện tại
             if (distance > maxDistance && chunk != currentChunk)
             {
                 MapChunkPool.Instance.ReturnToPool(chunk);

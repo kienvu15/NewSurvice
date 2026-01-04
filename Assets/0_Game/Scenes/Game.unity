@@ -718,6 +718,7 @@ GameObject:
   - component: {fileID: 543372115}
   - component: {fileID: 543372114}
   - component: {fileID: 543372116}
+  - component: {fileID: 543372117}
   m_Layer: 0
   m_Name: MapController
   m_TagString: Untagged
@@ -777,6 +778,21 @@ MonoBehaviour:
   prefabs:
   - {fileID: 4607433177838408240, guid: 81fa3c669baf80642a2c2835556e635c, type: 3}
   initialPoolSize: 20
+--- !u!114 &543372117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543372113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a781b1a6f62904fa86bfec17d98f15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PropPool
+  propPrefabs:
+  - {fileID: 5423201792745610912, guid: a9c61e119b1b07c4195075892a40f8e5, type: 3}
+  initialSizePerPrefab: 30
 --- !u!1 &626397771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,7 +1217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1979040128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1515,35 +1531,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4607433177838408240, guid: 81fa3c669baf80642a2c2835556e635c, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 5992923643984213143}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81fa3c669baf80642a2c2835556e635c, type: 3}
---- !u!114 &5992923643984213142 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 849768248111190307, guid: 81fa3c669baf80642a2c2835556e635c, type: 3}
-  m_PrefabInstance: {fileID: 5992923643984213141}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1427854577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5b57005c1c25cb4facaf5378ac00baa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PropRandomizer
---- !u!114 &5992923643984213143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1427854577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39d095fd2c3fad049ba292a23226dcd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MapChunk
-  propRandomizer: {fileID: 5992923643984213142}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -653,6 +653,7 @@ GameObject:
   - component: {fileID: 7632224076318263720}
   - component: {fileID: 849768248111190307}
   - component: {fileID: 491259901907973727}
+  - component: {fileID: 5828765017974665019}
   - component: {fileID: 2868473824638562692}
   m_Layer: 6
   m_Name: Chunks
@@ -706,14 +707,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PropRandomizer
   propSpawnPoints:
-  - {fileID: 6266501872935631159}
-  - {fileID: 9053281676216014197}
-  - {fileID: 1116962973552595024}
-  - {fileID: 989165510310110845}
-  - {fileID: 6479039115317794609}
-  - {fileID: 2891114849691684558}
-  - {fileID: 5692984303958356127}
-  - {fileID: 5946805330905039415}
+  - {fileID: 4711908066995005072}
+  - {fileID: 4257870031108322223}
+  - {fileID: 2104891273424615476}
+  - {fileID: 6852832576001421220}
+  - {fileID: 8377693563074395595}
+  - {fileID: 4381460904829632333}
+  - {fileID: 96404694487655231}
+  - {fileID: 5937489921762440904}
   propPrefabs:
   - {fileID: 5423201792745610912, guid: a9c61e119b1b07c4195075892a40f8e5, type: 3}
 --- !u!114 &491259901907973727
@@ -728,6 +729,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9fda6fe6090ef4181e721020aaafd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChunkNavMesh
+--- !u!114 &5828765017974665019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4607433177838408240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d095fd2c3fad049ba292a23226dcd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapChunk
+  propRandomizer: {fileID: 849768248111190307}
 --- !u!114 &2868473824638562692
 MonoBehaviour:
   m_ObjectHideFlags: 0
